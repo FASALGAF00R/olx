@@ -20,7 +20,6 @@ const Create = () => {
 
   const handleSubmit = (e) => { 
     e.preventDefault()
-    //here the firebase.storage means it defines where the image should store.
     firebase.storage().ref(`/image/${image.name}`).put(image).then(({ ref }) => { //then block is used here for that when the img uploaded then we need to use that that why 
       //ref is an object
       //PUT method used here is to upload that image

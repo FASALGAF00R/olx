@@ -18,15 +18,11 @@ export default function Signup() {
   const { firebase } = useContext(FirebaseContext);
 
   const handleSubmit = (e) => {
-    //prevent efault ensure that the form does not refresh the page when the user submits it.
     e.preventDefault();
-    //used for firebase authentication to create a new user acc with provided email and password
     firebase.auth().createUserWithEmailAndPassword(email, password).then((result) => {
       console.log(result.user.uid);
-      //it updates the users profile information with display name set to the username provided during the registration.
       result.user.updateProfile({ displayName: username }).then(() => {
         firebase.firestore().collection('users').add({
-          //UID (unique identifier) for each user in Firebase auth
           id: result.user.uid,
           username: username,
           phone: phone
